@@ -36,5 +36,30 @@ document.querySelectorAll('.digit').forEach(button => {
     displayValue += button.textContent;
     updateDisplay();
   })
+})
+
+// operator button function
+document.querySelectorAll('.operator').forEach(button => {
+  button.addEventListener('click', () => {
+    // check if first number has a value
+    // first time hitting operator button firstNumber will always be null
+    if (firstNumber === null){
+      firstNumber = parseFloat(displayValue);
+    }
+    else if (operator !== null && displayValue !== ''){
+      secondNumber = parseFloat(displayValue);
+      const result = operate(firstNumber, secondNumber);
+      displayValue = result.toString();
+      firstNumber = result;
+    }
+    // store the operator value
+    operator = button.textContent;
+    // reset display for the next input
+    shouldResetDisplay = true;
+  })
+})
+
+// equals button function
+document.querySelector('.equals').addEventListener(click, () => {
   
 })
